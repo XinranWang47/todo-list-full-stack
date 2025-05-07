@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const TodoModel = require('./Models/Todo')
+const PORT = process.env.PORT || 3001;
 
 const app = express()
 app.use(cors())
@@ -37,6 +38,6 @@ app.post('/add',(req,res) => {
   }).then(result => res.json(result))
   .catch(err => res.json(err))
 })
-app.listen(3001,() => {
-  console.log('Server is running');
-})
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
