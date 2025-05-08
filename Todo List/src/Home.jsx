@@ -6,15 +6,17 @@ import { BsCircleFill,BsFillTrashFill,BsFillCheckCircleFill } from "react-icons/
 
 function Home() {
   const [todos,setTodos] = useState([])
+
+  const API_URL = 'https://todo-list-backend-p1w8.onrender.com'
   
   useEffect(() => {
-    axios.get('http://localhost:3001/get')
+    axios.get(`${API_URL}/get`)
     .then(result => setTodos(result.data))
     .catch(err => console.log(err))
   },[])
 
   const handleEdit = (id) => {
-    axios.put('http://localhost:3001/update/'+id)
+    axios.put(`${API_URL}/update/${id}`)
     .then(result => {
       location.reload()
     })
@@ -22,7 +24,7 @@ function Home() {
   }
 
   const handleDelete = (id) => {
-    axios.delete('http://localhost:3001/delete/'+id)
+    axios.delete(`${API_URL}/delete/${id}`)
     .then(result => {
       location.reload()
     })
